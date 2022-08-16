@@ -6,7 +6,7 @@ export VCLUSTER_CTX=$(kubectl ctx)
 
 echo "VCluster context: $VCLUSTER_CTX\n"
 
-helm repo add tremolo https://nexus.tremolo.io/repository/helm-betas/
+helm repo add tremolo $TREMOLO_HELM_REPO
 helm repo update
 
 kubectl ctx
@@ -15,7 +15,7 @@ kubectl config set-cluster controlplane --server=https://kubernetes.default.svc:
 kubectl config set-credentials controlplane --token=/var/run/secrets/kubernetes.io/serviceaccount/token
 kubectl config set-context controlplane --user=controlplane --user=controlplane
 
-kubectl ctx vcluster_vcluster_vcluster_
+kubectl ctx $VCLUSTER_CTX
 
 kubectl ctx
 
