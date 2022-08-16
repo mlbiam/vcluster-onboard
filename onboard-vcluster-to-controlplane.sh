@@ -4,10 +4,10 @@ export PATH=$PATH:~/.krew/bin
 
 export VCLUSTER_CTX=$(kubectl ctx)
 
-echo "VCluster context: $VCLUSTER_CTX\n"
+echo "VCluster context: $VCLUSTER_CTX"
 
 helm repo add tremolo $TREMOLO_HELM_REPO
-helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+helm repo add kubernetes-dashboard $K8S_DASHBOARD_HELM_REPO
 helm repo update
 
 kubectl ctx
@@ -20,8 +20,8 @@ kubectl ctx $VCLUSTER_CTX
 
 kubectl ctx
 
-#kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
-helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --set settings.clusterName=vcluster-blog -n kubernetes-dashboard
+
+helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --set settings.clusterName=$VCLUSTER_LABEL -n kubernetes-dashboard
 
 kubectl ctx controlplane
 
