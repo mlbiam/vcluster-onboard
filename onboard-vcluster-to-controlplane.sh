@@ -20,7 +20,7 @@ kubectl ctx $VCLUSTER_CTX
 
 kubectl ctx
 
-
+kubectl create ns kubernetes-dashboard
 helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --set settings.clusterName=$VCLUSTER_LABEL -n kubernetes-dashboard
 
 kubectl ctx controlplane
