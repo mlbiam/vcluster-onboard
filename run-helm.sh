@@ -12,4 +12,4 @@ helm repo add tremolo $TREMOLO_HELM_REPO
 
 helm repo update
 
-helm install $HELM_DEPLOYMENT $HELM_CHART -n $TARGET_NAMESPACE -f $PATH_TO_VALUES
+helm install $HELM_DEPLOYMENT tremolo/$HELM_CHART -n $TARGET_NAMESPACE -f $PATH_TO_VALUES
