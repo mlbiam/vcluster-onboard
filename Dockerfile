@@ -18,6 +18,7 @@ RUN mkdir -p /usr/local/openunison && \
 ADD install-krew.sh /usr/local/openunison/install-krew.sh
 ADD onboard-cluster.sh /usr/local/openunison/onboard-cluster.sh
 ADD onboard-vcluster-to-controlplane.sh /usr/local/openunison/onboard-vcluster-to-controlplane.sh
+ADD run-helm.sh /usr/local/openunison/run-helm.sh
 RUN chown -R openunison:openunison /usr/local/openunison
 
 USER openunison
