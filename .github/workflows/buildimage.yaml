@@ -42,5 +42,5 @@ jobs:
           push: true
           tags: |
             docker.io/${{ secrets.OU_CONTAINER_REPO }}/vcluster-onboard
-            ghcr.io/${{ env.REPO }}
+            ghcr.io/${{ env.REPO }}:latest
           
