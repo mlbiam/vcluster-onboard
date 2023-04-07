@@ -26,6 +26,6 @@ USER openunison
 RUN /usr/local/openunison/install-krew.sh && \
     export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" && \
     kubectl krew install ctx && \
-    curl https://nexus.tremolo.io/repository/ouctl-betas/ouctl.yaml > /usr/local/openunison/ouctl.yaml && \
+    curl https://nexus.tremolo.io/repository/ouctl/ouctl.yaml > /usr/local/openunison/ouctl.yaml && \
     kubectl krew install --manifest=/usr/local/openunison/ouctl.yaml
 
