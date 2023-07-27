@@ -2,9 +2,9 @@ FROM ubuntu:22.04
 
 ADD install-vcluster.sh /root/install-vcluster.sh
 RUN apt-get update && \
-    apt-get install -y ca-certificates curl git && \
-    curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg && \
-    echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list && \
+    apt-get install -y ca-certificates curl git gnupg gnupg2 && \
+    curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /etc/apt/trusted.gpg.d/kubernetes-archive-keyring.gpg add && \
+    echo "deb [signed-by=/etc/apt/trusted.gpg.d/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" |  tee /etc/apt/sources.list.d/kubernetes.list && \
     apt-get update && \
     apt-get install -y kubectl && \
     /root/install-vcluster.sh && \
