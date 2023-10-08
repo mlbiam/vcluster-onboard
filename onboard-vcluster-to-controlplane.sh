@@ -24,13 +24,13 @@ kubectl create ns kubernetes-dashboard
 helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard  --version 6.0.8  --set settings.clusterName=$VCLUSTER_LABEL --set settings.itemsPerPage=15 -n kubernetes-dashboard
 
 
-if [[ -z "${CA_CRT} "]]; then
-    echo "No CA Cert"
-else
+if [ -v CA_CRT ]; then
     mkdir -p /tmp/cert-secret
     echo -n $CA_CRT | base64 -d > /tmp/cert-secret/cert.pem
     kubectl create ns openunison
     kubectl create secret generic unison-ca --from-file=/tmp/cert-secret -n openunison
+else
+    echo "No CA Cert"
 fi
 
 kubectl ctx controlplane
