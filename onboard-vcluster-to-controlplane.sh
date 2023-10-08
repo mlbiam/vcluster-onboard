@@ -26,7 +26,7 @@ helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard  --v
 
 if [ -v CA_CRT ]; then
     mkdir -p /tmp/cert-secret
-    echo -n $CA_CRT | base64 -d > /tmp/cert-secret/cert.pem
+    echo -n $CA_CRT | base64 -d > /tmp/cert-secret/tls.crt
     kubectl create ns openunison
     kubectl create secret generic unison-ca --from-file=/tmp/cert-secret -n openunison
 else
