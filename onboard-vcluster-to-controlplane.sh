@@ -23,6 +23,16 @@ kubectl ctx
 kubectl create ns kubernetes-dashboard
 helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard  --version 6.0.8  --set settings.clusterName=$VCLUSTER_LABEL --set settings.itemsPerPage=15 -n kubernetes-dashboard
 
+
+if [[ -z "${CA_CRT} "]]; then
+    echo "No CA Cert"
+else
+    mkdir -p /tmp/cert-secret
+    echo -n $CA_CRT | base64 -d > /tmp/cert-secret/cert.pem
+    kubectl create ns openunison
+    kubectl create secret generic unison-ca --from-file=/tmp/cert-secret -n openunison
+fi
+
 kubectl ctx controlplane
 
 kubectl ouctl install-satelite -r cluster-role-bindings=tremolo/openunison-vcluster-admins /etc/openunison/satelite.yaml controlplane $VCLUSTER_CTX
