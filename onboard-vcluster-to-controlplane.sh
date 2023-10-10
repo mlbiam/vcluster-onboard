@@ -36,3 +36,6 @@ fi
 kubectl ctx controlplane
 
 kubectl ouctl install-satelite -r cluster-role-bindings=tremolo/openunison-vcluster-admins /etc/openunison/satelite.yaml controlplane $VCLUSTER_CTX
+
+kubectl ctx controlplane
+kubectl create configmap deploymentcomplete -n $VCLUSTER_LABEL
