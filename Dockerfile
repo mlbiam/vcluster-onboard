@@ -10,6 +10,10 @@ RUN apt-get update && \
     /root/install-vcluster.sh && \
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
+RUN curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64 && \
+    install -m 555 argocd-linux-amd64 /usr/local/bin/argocd && \
+    rm argocd-linux-amd64
+
 RUN mkdir -p /usr/local/openunison && \
     groupadd -r openunison -g 433 && \
     useradd -u 431 -r -g openunison -d /usr/local/openunison -s /sbin/nologin -c "OpenUnison Docker image user" openunison && \
