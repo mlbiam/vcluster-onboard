@@ -22,8 +22,11 @@ RUN mkdir -p /usr/local/openunison && \
 ADD install-krew.sh /usr/local/openunison/install-krew.sh
 ADD onboard-cluster.sh /usr/local/openunison/onboard-cluster.sh
 ADD onboard-vcluster-to-controlplane.sh /usr/local/openunison/onboard-vcluster-to-controlplane.sh
+ADD onboard-vcluster-to-controlplane-db7.sh /usr/local/openunison/onboard-vcluster-to-controlplane-db7.sh
 ADD run-helm.sh /usr/local/openunison/run-helm.sh
+ADD kubernetes-dashboard-values.yaml /usr/local/openunison/kubernetes-dashboard-values.yaml
 RUN chown -R openunison:openunison /usr/local/openunison
+
 
 USER openunison
 
